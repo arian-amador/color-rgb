@@ -16,6 +16,28 @@ describe Color::RGB do
     end
   end
 
+  context 'converting to and from floats' do
+    let(:rgb) { [34, 155, 167] }
+    let(:color) { Color::RGB.from_array(rgb) }
+    let(:floated) { [0.1333, 0.6078, 0.6549] }
+
+    describe '.to_f' do
+      it 'should convert rgb to float' do
+        expect(color.to_f).to eq([
+            0.13333333333333333,
+            0.6078431372549019,
+            0.6549019607843137
+          ])
+      end
+    end
+
+    describe '.from_f' do
+      it 'should convert float to rgb and return an array' do
+        expect(Color::RGB.from_float(floated).to_a).to eq(rgb)
+      end
+    end
+  end
+
   context 'packing to integers' do
     let(:rgb)   { [255, 20, 147] }
     let(:color) { Color::RGB.from_array(rgb) }

@@ -17,6 +17,13 @@ module Color
       self.new(red, green, blue)
     end
 
+    def self.from_float(f_array)
+      red = (f_array[0] * 255).ceil
+      green = (f_array[1] * 255).ceil
+      blue = (f_array[2] * 255).ceil
+      self.new(red, green, blue)
+    end
+
     def initialize(r, g, b)
       @r = r.to_f
       @g = g.to_f
@@ -32,6 +39,10 @@ module Color
 
     def to_xyz
       Color::XYZ.from_rgb(self).to_a
+    end
+
+    def to_f
+      [(@r / 255.0), (@g / 255.0), (@b / 255.0)]
     end
 
     def to_int
